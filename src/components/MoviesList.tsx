@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {Animated, ListRenderItem, StyleSheet} from 'react-native';
 import {Spacings} from 'react-native-ui-lib';
 
 import {Movie} from '../store/movies/types';
@@ -10,13 +10,20 @@ type MoviesListProps = {
   movies: Movie[];
 };
 
-const renderCard = ({item}) => <MovieCard {...item} />;
+const renderCard: ListRenderItem<Movie> = ({item, index}) => (
+  <MovieCard {...item} index={index} />
+);
 
 export const MoviesList = ({movies}: MoviesListProps) => (
-  <FlatList
+  <Animated.FlatList
     data={movies}
-    keyExtractor={({id}) => id}
+    keyExtractor={({id}) => id.toString()}
     renderItem={renderCard}
+    // renderItem={({item}) => (
+    //   <Animated.View>
+    //     <MovieCard {...item} />
+    //   </Animated.View>
+    // )}
     contentContainerStyle={styles.container}
   />
 );

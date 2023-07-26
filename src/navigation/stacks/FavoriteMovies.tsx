@@ -1,11 +1,12 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 
 import {ScreenIds} from '../screenIds';
 import {ScreensRegistry} from '../screensRegistry';
 import {RootStackParams, RootStackParamsKeys} from '../types';
 
-const FavoriteMoviesTabStack = createStackNavigator<RootStackParams>();
+const FavoriteMoviesTabStack =
+  createSharedElementStackNavigator<RootStackParams>();
 
 export const FavoriteMoviesTabStackScreen = () => {
   const favoriteMoviesScreen = ScreensRegistry[ScreenIds.favoriteMovies];

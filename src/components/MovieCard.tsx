@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {StyleSheet} from 'react-native';
+import {SharedElement} from 'react-navigation-shared-element';
 import Animated, {
   FadeInLeft,
   FadeOutRight,
@@ -9,6 +10,7 @@ import {Card, View, Text} from 'react-native-ui-lib';
 
 import {Movie} from '../store/movies/types';
 import {FavoriteButton} from './FavoriteButton';
+import {getSharedMovieImageId} from '../navigation/getSharedImageId';
 
 export type MovieCardProps = Movie & {
   index: number;
@@ -17,6 +19,7 @@ export type MovieCardProps = Movie & {
 };
 
 export const MovieCard: FC<MovieCardProps> = ({
+  id,
   title,
   description,
   image,
@@ -39,7 +42,9 @@ export const MovieCard: FC<MovieCardProps> = ({
       onPress={onPress}
       bg-$backgroundElevated
     >
-      <Card.Section imageSource={{uri: image}} imageStyle={styles.image} />
+      <SharedElement id={getSharedMovieImageId(id)}>
+        <Card.Section imageSource={{uri: image}} imageStyle={styles.image} />
+      </SharedElement>
       <View padding-s4 flex centerV>
         <Text text70 $textGeneral numberOfLines={1}>
           {title}

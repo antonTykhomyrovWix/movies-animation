@@ -22,7 +22,8 @@
     "react-native-web": "~0.18.10",
     "react-redux": "^8.0.4",
     "superagent": "^8.0.2",
-    "superagent-promise": "^1.1.0"
+    "superagent-promise": "^1.1.0",
+    "lottie-react-native": "5.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

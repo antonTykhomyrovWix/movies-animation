@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {ListRenderItem, StyleSheet} from 'react-native';
 import Animation from 'react-native-reanimated';
 import {Spacings} from 'react-native-ui-lib';
@@ -15,7 +15,7 @@ const renderCard: ListRenderItem<Movie> = ({item, index}) => (
   <MovieCard {...item} index={index} />
 );
 
-export const MoviesList = ({movies}: MoviesListProps) => (
+export const MoviesList: FC<MoviesListProps> = ({movies}) => (
   <Animation.FlatList
     data={movies}
     // layout={Layout.delay(500)}

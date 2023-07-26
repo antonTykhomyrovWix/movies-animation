@@ -1,6 +1,5 @@
-import {AntDesign} from '@expo/vector-icons';
-import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import React, {FC} from 'react';
+import {StyleSheet} from 'react-native';
 import Animated, {
   FadeInLeft,
   FadeOutRight,
@@ -9,6 +8,7 @@ import Animated, {
 import {Card, View, Text} from 'react-native-ui-lib';
 
 import {Movie} from '../store/movies/types';
+import {FavoriteButton} from './FavoriteButton';
 
 export type MovieCardProps = Movie & {
   index: number;
@@ -16,7 +16,7 @@ export type MovieCardProps = Movie & {
   onFavoritePress?: () => void;
 };
 
-export const MovieCard = ({
+export const MovieCard: FC<MovieCardProps> = ({
   title,
   description,
   image,
@@ -25,7 +25,7 @@ export const MovieCard = ({
   isFavorite,
   onPress,
   onFavoritePress,
-}: MovieCardProps) => (
+}) => (
   <Animated.View
     entering={FadeInLeft.delay(index * 50)}
     exiting={FadeOutRight}
@@ -51,15 +51,10 @@ export const MovieCard = ({
           {date}
         </Text>
       </View>
-      <TouchableOpacity onPress={onFavoritePress}>
-        <View center paddingH-s5 height="100%">
-          <AntDesign
-            name={isFavorite ? 'star' : 'staro'}
-            size={32}
-            color="red"
-          />
-        </View>
-      </TouchableOpacity>
+      <FavoriteButton
+        onFavoritePress={onFavoritePress}
+        isFavorite={isFavorite}
+      />
     </Card>
   </Animated.View>
 );

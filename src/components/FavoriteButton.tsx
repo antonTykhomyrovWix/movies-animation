@@ -46,8 +46,15 @@ export const FavoriteButton: FC<FavoriteButtonProps> = ({
       return defaultAnimatedStyle;
     }
 
-    const scale = withSequence(withTiming(0), withTiming(1.2), withTiming(1));
-    const rotate = withSequence(withTiming('-120deg'), withTiming('0deg'));
+    const scale = withSequence(
+      withTiming(0, animationConfig),
+      withTiming(1.2, animationConfig),
+      withTiming(1, animationConfig)
+    );
+    const rotate = withSequence(
+      withTiming('-120deg', animationConfig),
+      withTiming('0deg', animationConfig)
+    );
 
     return {
       transform: [{scale}, {rotate}],

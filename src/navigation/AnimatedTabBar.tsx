@@ -1,9 +1,9 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useMemo, useState} from 'react';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-
 import {View} from 'react-native-ui-lib';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {LayoutChangeEvent, StyleSheet} from 'react-native';
+import {LayoutChangeEvent, StyleSheet, Platform} from 'react-native';
+
 import {TransitionTabBarIcon} from './icons';
 import {TabBarItem} from './TabBarItem';
 
@@ -31,8 +31,18 @@ export const AnimatedTabBar: FC<BottomTabBarProps> = ({
     }
   }, [activeIndex, layoutMap, routes.length]);
 
+  const paddingBottom = useMemo(
+    () =>
+      Platform.select({
+        ios: bottom,
+        android: bottom + 20,
+        default: bottom,
+      }),
+    [bottom]
+  );
+
   return (
-    <View style={[styles.tabBar, {paddingBottom: bottom}]}>
+    <View style={[styles.tabBar, {paddingBottom}]}>
       <TransitionTabBarIcon xOffset={transitionIconXOffset} />
       <View style={styles.tabBarContainer}>
         {routes.map((route, index) => {

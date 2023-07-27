@@ -1,9 +1,9 @@
-import React, {FC, useRef} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
 import Animated, {useAnimatedStyle, withTiming} from 'react-native-reanimated';
 import {StyleSheet, LayoutChangeEvent, Pressable} from 'react-native';
-
 import {Text} from 'react-native-ui-lib';
+import Lottie from 'lottie-react-native';
 
 import {TabBarIcon} from './icons/types';
 
@@ -22,7 +22,13 @@ export const TabBarItem: FC<TabBarItemProps> = ({
   onLayout,
   onPress,
 }) => {
-  const ref = useRef(null);
+  const ref = useRef<Lottie>(null);
+
+  useEffect(() => {
+    if (active && ref?.current) {
+      ref.current.play();
+    }
+  }, [active]);
 
   const animatedItemCircleStyles = useAnimatedStyle(
     () => ({

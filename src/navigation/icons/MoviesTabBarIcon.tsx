@@ -1,13 +1,15 @@
-import React from 'react';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
+import React, {FC} from 'react';
 
+import Lottie from 'lottie-react-native';
 import {TabBarIcon} from './types';
 
-export const MoviesTabBarIcon = ({focused, color, size}: TabBarIcon) => {
-  if (focused)
-    return <MaterialCommunityIcons name="movie" size={size} color={color} />;
-
-  return (
-    <MaterialCommunityIcons name="movie-outline" size={size} color={color} />
-  );
-};
+export const MoviesTabBarIcon: FC<TabBarIcon> = ({focused, size, ref}) => (
+  <Lottie
+    ref={ref}
+    source={require('../../assets/movie.json')}
+    style={{width: size, height: size}}
+    loop={false}
+    duration={2000}
+    progress={focused ? 0 : 1}
+  />
+);

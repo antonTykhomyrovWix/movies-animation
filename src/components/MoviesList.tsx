@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import {ListRenderItem, StyleSheet, RefreshControl} from 'react-native';
-import Animation from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import {Spacings} from 'react-native-ui-lib';
 
 import {Movie} from '../store/movies/types';
@@ -27,10 +27,11 @@ export const MoviesList: FC<MoviesListProps> = ({movies}) => {
   }, []);
 
   return (
-    <Animation.FlatList
+    <Animated.FlatList
       data={movies}
-      // layout={Layout.delay(500)}
-      // itemLayoutAnimation={Layout.delay(3000)}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // itemLayoutAnimation={Layout.delay(3000).springify()}
       keyExtractor={({id}) => id.toString()}
       renderItem={renderCard}
       contentContainerStyle={styles.container}

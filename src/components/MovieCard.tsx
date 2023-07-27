@@ -1,11 +1,7 @@
 import React, {FC} from 'react';
 import {StyleSheet} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
-import Animated, {
-  FadeInLeft,
-  FadeOutRight,
-  Layout,
-} from 'react-native-reanimated';
+import Animated, {FadeInLeft, FadeOutRight} from 'react-native-reanimated';
 import {Card, View, Text} from 'react-native-ui-lib';
 
 import {Movie} from '../store/movies/types';
@@ -29,11 +25,7 @@ export const MovieCard: FC<MovieCardProps> = ({
   onPress,
   onFavoritePress,
 }) => (
-  <Animated.View
-    entering={FadeInLeft.delay(index * 50)}
-    exiting={FadeOutRight}
-    layout={Layout}
-  >
+  <Animated.View entering={FadeInLeft.delay(index * 50)} exiting={FadeOutRight}>
     <Card
       row
       br10

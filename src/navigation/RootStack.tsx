@@ -1,11 +1,15 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React, {FC} from 'react';
+import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
-import {MoviesTabBarIcon} from './icons';
+import {MoviesTabBarIcon, FavoriteMoviesTabBarIcon} from './icons';
 import {FavoriteMoviesTabStackScreen, MoviesTabStackScreen} from './stacks';
-import {FavoriteMoviesTabBarIcon} from './icons/FavoriteMoviesTabBarIcon';
+import {AnimatedTabBar} from './AnimatedTabBar';
 
 const Tab = createBottomTabNavigator();
+const TopBar: FC<BottomTabBarProps> = (props) => <AnimatedTabBar {...props} />;
 
 export const RootStackScreen = () => (
   <Tab.Navigator
@@ -13,6 +17,7 @@ export const RootStackScreen = () => (
       tabBarShowLabel: false,
       headerShown: false,
     }}
+    tabBar={TopBar}
   >
     <Tab.Screen
       name="MoviesTabStackScreen"
